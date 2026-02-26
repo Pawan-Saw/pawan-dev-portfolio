@@ -91,6 +91,19 @@ const Projects: React.FC = () => {
       live: "https://example.com",
       featured: false,
       category: "AI / ML",
+    },
+    {
+      id: 8,
+      title: "Amazon_clone",
+      description:
+        "A responsive Amazon-inspired e-commerce clone with product listings, cart interactions, and a modern UI.",
+      image:
+        "https://images.unsplash.com/photo-1557825835-70d97c4aa06a?auto=format&fit=crop&w=2340&q=80",
+      technologies: ["React", "TypeScript", "TailwindCSS", "Vite"],
+      github: "https://github.com",
+      live: "https://amazon-clone-mu-orpin.vercel.app",
+      featured: true,
+      category: "E-Commerce",
     }
   ];
 
