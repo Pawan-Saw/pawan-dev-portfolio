@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 
   const fullText = 'Pawan Kumar';
-  const roles = ['Full Stack Developer', 'Problem Solver', 'Tech Enthusiast', 'Creative Thinker'];
+  const roles = ['Backend Developer', 'Full Stack Developer', 'Problem Solver', 'Tech Enthusiast'];
   const [currentRole, setCurrentRole] = useState(0);
   const [displayRole, setDisplayRole] = useState('');
 
@@ -125,47 +125,54 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-black pt-20 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 bg-[#0F0A1F] overflow-hidden">
+      {/* background glows */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -left-10 h-80 w-80 rounded-full bg-[#7B61FF]/30 blur-3xl" />
+        <div className="absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-[#00D4FF]/25 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(123,97,255,0.18),transparent_60%),radial-gradient(circle_at_bottom,_rgba(0,212,255,0.18),transparent_60%)] opacity-80" />
       </div>
-
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40 dark:opacity-20"></div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in-up">
+          <div className="space-y-8 animate-fade-in-up text-left">
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-                Hi, I'm{' '}
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
+              <p className="text-xs font-semibold tracking-[0.35em] text-[#A0A0B0] uppercase">
+                Backend · Full Stack · Problem Solver
+              </p>
+              <h1
+                className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white"
+              >
+                Hi, I&apos;m{' '}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(135deg, #9F7AEA 0%, #7B61FF 35%, #00D4FF 100%)',
+                  }}
+                >
                   {displayText}
                   <span className={showCursor ? 'opacity-100' : 'opacity-0'}>|</span>
                 </span>
               </h1>
-              <div className="text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 min-h-[2.5rem]">
-                <span className="text-blue-600 dark:text-blue-400 font-semibold">
+              <div className="text-xl lg:text-2xl text-[#A0A0B0] min-h-[2.5rem]">
+                <span className="font-semibold text-white">
                   {displayRole || 'Full Stack Developer'}
                   <span className={showCursor && displayRole ? 'opacity-100' : 'opacity-0'}>|</span>
                 </span>
               </div>
             </div>
             
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up-delay">
-              I'm a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Computer Science Engineering</span> graduate 
-              with expertise in creating beautiful, functional, and user-centered digital experiences. 
-              I love turning complex problems into simple, elegant solutions.
+            <p className="text-sm sm:text-base text-[#A0A0B0] leading-relaxed max-w-xl animate-fade-in-up-delay">
+              I&apos;m a Computer Science Engineering graduate focused on backend and full‑stack development,
+              building reliable APIs, clean architectures, and smooth user experiences with modern web tech.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up-delay-2">
               <button
                 onClick={scrollToContact}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 overflow-hidden"
+                className="group btn-primary transition-all duration-300 hover:shadow-2xl"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Get In Touch
@@ -173,7 +180,6 @@ const Hero: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
               <button
                 onClick={() => {
@@ -182,7 +188,7 @@ const Hero: React.FC = () => {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold rounded-full hover:border-blue-600 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-all duration-300 flex items-center gap-2"
+                className="group btn-secondary duration-300 flex"
               >
                 View My Work
                 <svg className="w-5 h-5 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,7 +203,7 @@ const Hero: React.FC = () => {
                 href="https://github.com/Pawan-Saw" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-gray-900 dark:hover:bg-white hover:scale-110 transition-all duration-300 shadow-md hover:shadow-xl"
+                className="group relative w-12 h-12 rounded-full bg-white/80 dark:bg-white/5 flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white hover:bg-slate-900 dark:hover:bg-slate-100 dark:hover:text-slate-900 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-lg border border-black/5 dark:border-white/10"
                 aria-label="GitHub Profile"
               >
                 <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -208,7 +214,7 @@ const Hero: React.FC = () => {
                 href="https://www.linkedin.com/in/pawan-kumar-21a794310" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-500 hover:scale-110 transition-all duration-300 shadow-md hover:shadow-xl"
+                className="group relative w-12 h-12 rounded-full bg-white/80 dark:bg-white/5 flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white hover:bg-blue-700 dark:hover:bg-blue-300 dark:hover:text-slate-900 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-lg border border-black/5 dark:border-white/10"
                 aria-label="LinkedIn Profile"
               >
                 <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -217,7 +223,7 @@ const Hero: React.FC = () => {
               </a>
               <a 
                 href="mailto:pksaw7717@gmail.com" 
-                className="group relative w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:scale-110 transition-all duration-300 shadow-md hover:shadow-xl"
+                className="group relative w-12 h-12 rounded-full bg-white/80 dark:bg-white/5 flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white hover:bg-rose-600 dark:hover:bg-rose-300 dark:hover:text-slate-900 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-lg border border-black/5 dark:border-white/10"
                 aria-label="Send Email"
               >
                 <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -230,12 +236,8 @@ const Hero: React.FC = () => {
           {/* Right Content - Profile Image */}
           <div className="flex justify-center lg:justify-end items-center animate-fade-in-right">
             <div className="relative w-full max-w-[450px] lg:max-w-[550px] h-[500px] lg:h-[650px]">
-              {/* Animated Shadow/Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 blur-3xl -z-10 scale-110 dark:from-blue-500/20 dark:via-purple-500/20 dark:to-pink-500/20 animate-pulse-slow"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl -z-10 scale-125 dark:from-purple-500/15 dark:via-pink-500/15 dark:to-blue-500/15 animate-pulse-slow-delay"></div>
-              
               {/* Profile Image Container */}
-              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-2 ring-white/10 dark:ring-white/5 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-900 dark:to-black transform hover:scale-[1.02] transition-transform duration-500">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/10 dark:ring-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-sm transform hover:scale-[1.01] transition-transform duration-500">
                 {/* Profile Image - Always show if image exists */}
                 {!imageError ? (
                   <img 
@@ -286,16 +288,6 @@ const Hero: React.FC = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-black/40 via-black/15 to-transparent pointer-events-none dark:from-black/60 dark:via-black/25" style={{ display: imageError ? 'none' : 'block' }}></div>
               </div>
               
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 dark:from-yellow-500 dark:to-orange-500 rounded-full flex items-center justify-center shadow-2xl animate-float z-10 border-4 border-white dark:border-gray-800 hover:scale-110 transition-transform cursor-pointer">
-                <span className="text-3xl animate-spin-slow">🚀</span>
-              </div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 dark:from-green-500 dark:to-emerald-600 rounded-full flex items-center justify-center shadow-2xl animate-float-delay z-10 border-4 border-white dark:border-gray-800 hover:scale-110 transition-transform cursor-pointer">
-                <span className="text-2xl">💻</span>
-              </div>
-              <div className="absolute top-1/2 -right-12 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 dark:from-purple-500 dark:to-pink-500 rounded-full flex items-center justify-center shadow-xl animate-float-slow z-10 border-2 border-white dark:border-gray-800">
-                <span className="text-xl">⚡</span>
-              </div>
             </div>
           </div>
         </div>

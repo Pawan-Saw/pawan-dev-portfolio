@@ -97,14 +97,19 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-950">
+    <section id="contact" className="py-24 bg-[#0F0A1F] section-surface">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Get In <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: 'linear-gradient(135deg, #9F7AEA 0%, #7B61FF 35%, #00D4FF 100%)' }}
+              >
+                Get In Touch
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base text-[#A0A0B0] max-w-3xl mx-auto">
               I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!
             </p>
           </div>
@@ -125,9 +130,12 @@ const Contact: React.FC = () => {
                   <a
                     key={index}
                     href={info.link}
-                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                    className="flex items-center space-x-4 p-4 card-surface hover:shadow-2xl transition-shadow duration-300"
                   >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-sm"
+                      style={{ backgroundImage: 'linear-gradient(135deg, rgb(79 70 229), rgb(13 148 136))' }}
+                    >
                       {info.icon}
                     </div>
                     <div>
@@ -147,7 +155,7 @@ const Contact: React.FC = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:shadow-md transition-all duration-300"
+                      className="w-12 h-12 card-surface rounded-xl flex items-center justify-center text-gray-700 dark:text-gray-200 hover:shadow-lg transition-all duration-300"
                     >
                       {social.icon}
                     </a>
@@ -157,7 +165,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8">
+            <div className="card-surface rounded-3xl p-8 bg-[#1E1A3A]">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -172,7 +180,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-gray-900 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-teal-400/70 focus:border-transparent transition-colors duration-200"
                       placeholder="Your Name"
                     />
                   </div>
@@ -187,7 +195,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-gray-900 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-teal-400/70 focus:border-transparent transition-colors duration-200"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -203,7 +211,7 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                    className="w-full px-4 py-3 border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-gray-900 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-teal-400/70 focus:border-transparent transition-colors duration-200"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -218,13 +226,13 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 text-gray-900 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-teal-400/70 focus:border-transparent transition-colors duration-200 resize-none"
                     placeholder="Tell me about your project or idea..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  className="w-full btn-primary rounded-2xl hover:shadow-2xl transition-all duration-300"
                 >
                   Send Message
                 </button>

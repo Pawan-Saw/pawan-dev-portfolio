@@ -1,200 +1,129 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+type Skill = {
+  name: string;
+  icon: string;
+};
+
+const skills: Skill[] = [
+  { name: 'C', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
+  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+];
 
 const Skills: React.FC = () => {
-  const skillBands = [
-    {
-      title: "Programming Core",
-      descriptor: "Structured thinking & efficient problem solving",
-      gradient: "from-sky-500 via-blue-600 to-indigo-600",
-      percent: 90,
-      stack: ["C", "C++", "Java", "Python"],
-      badge: "Logic First",
-    },
-    {
-      title: "UI Engineering",
-      descriptor: "Responsive layouts, micro-interactions & accessibility",
-      gradient: "from-rose-500 via-pink-500 to-purple-600",
-      percent: 94,
-      stack: ["HTML", "CSS", "Bootstrap", "Tailwind CSS", "jQuery"],
-      badge: "Pixel Perfect",
-    },
-    {
-      title: "Modern Frontend",
-      descriptor: "Type-safe SPAs, server components & routing",
-      gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-      percent: 86,
-      stack: ["Next.js", "TypeScript"],
-      badge: "Realtime Ready",
-    },
-    {
-      title: "Backend & Data",
-      descriptor: "API design, auth, persistent storage & deployments",
-      gradient: "from-amber-500 via-orange-500 to-red-500",
-      percent: 82,
-      stack: ["Node.js", "MongoDB"],
-      badge: "Scalable",
-    },
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const skillHighlights = [
-    {
-      label: "Primary Stack",
-      value: "Next.js · Node.js · MongoDB",
-      detail: "Full-stack JavaScript with SSR + API routes",
-    },
-    {
-      label: "Languages",
-      value: "C++ · C · Java · Python",
-      detail: "Competitive programming & DSA foundations",
-    },
-    {
-      label: "Interface Layer",
-      value: "HTML · CSS · Bootstrap · Tailwind · jQuery",
-      detail: "Design systems, components & rapid prototyping",
-    },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
 
-  const toolkit = [
-    "C",
-    "C++",
-    "Java",
-    "Python",
-    "HTML",
-    "CSS",
-    "Bootstrap",
-    "Tailwind CSS",
-    "jQuery",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "MongoDB",
-  ];
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-  const workflowPillars = [
-    "Research → wireframe → build loop for every feature",
-    "Reusable component libraries with Tailwind CSS & Next.js",
-    "API-first thinking using Node.js servers & MongoDB",
-    "Quality gates: code reviews, manual QA, performance passes",
-  ];
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section
+      ref={sectionRef}
       id="skills"
-      className="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-black overflow-hidden"
+      className="relative py-24 bg-gradient-to-b from-[#0B091E] via-[#0F0A25] to-[#0A0816] text-white overflow-hidden"
     >
-      <div className="absolute inset-y-0 left-10 w-72 bg-gradient-to-b from-blue-500/15 to-purple-500/10 blur-[160px] pointer-events-none" />
-      <div className="absolute -right-10 bottom-0 w-64 h-64 bg-cyan-400/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 opacity-25">
+        <div className="absolute -top-28 left-10 h-64 w-64 rounded-full bg-[#7B61FF] blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute -bottom-28 right-10 h-80 w-80 rounded-full bg-[#00D4FF] blur-3xl opacity-18 animate-pulse" />
+      </div>
 
-      <div className="relative container mx-auto px-4">
-        <div className="max-w-6xl mx-auto space-y-12">
-          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-10 shadow-2xl">
-              <p className="text-sm uppercase tracking-[0.4em] text-blue-300 mb-4">Skill Operating System</p>
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Crafting digital experiences with
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                  {' '}
-                  code & clarity
-                </span>
-              </h2>
-              <p className="text-lg text-gray-300 mb-8">
-                Every project I build relies on a focused set of languages, libraries, and workflows. Here’s the stack I’m
-                obsessed with and the level of polish I bring to each layer.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {["C++", "Next.js", "Tailwind CSS", "Node.js", "MongoDB"].map((chip) => (
-                  <span
-                    key={chip}
-                    className="px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm tracking-wide"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
+        <h2
+          className="text-4xl sm:text-5xl md:text-6xl font-bold font-['Poppins','Inter'] bg-clip-text text-transparent"
+          style={{ backgroundImage: 'linear-gradient(90deg, #7B61FF 0%, #0098FF 100%)' }}
+        >
+          My Skills
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-[#B5B5C8]">
+          I have mentioned all the skills I learned till now
+        </p>
+
+        <div
+          className={`mt-12 grid gap-y-10 gap-x-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          {skills.map((skill, index) => (
+            <div
+              key={skill.name}
+              className="group flex flex-col items-center justify-center space-y-3 px-2 py-4 text-center transition-all duration-300 hover:scale-[1.08] hover:-translate-y-[10px] hover:shadow-xl hover:text-[#E3E7FF]"
+              style={{
+                animation: isVisible ? 'fadeInUp 0.6s ease-out forwards' : 'none',
+                animationDelay: `${index * 0.05}s`,
+              }}
+            >
+              <img
+                src={skill.icon}
+                alt={skill.name}
+                className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 opacity-60 transition-all duration-300 group-hover:opacity-100 shadow-lg float-animation"
+                style={{ 
+                  filter: 'grayscale(45%)',
+                  animationDelay: `${index * 0.5}s`
+                }}
+              />
+              <span className="text-sm sm:text-base font-medium text-[#90A1FF] transition-all duration-300 group-hover:text-[#D4DAFF] group-hover:drop-shadow-[0_0_12px_rgba(123,97,255,0.65)]">
+                {skill.name}
+              </span>
             </div>
-
-            <div className="grid gap-6">
-              {skillHighlights.map((highlight, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl bg-white/80 dark:bg-gray-900/80 border border-white/60 dark:border-white/5 shadow-xl p-6 backdrop-blur"
-                >
-                  <p className="text-xs uppercase tracking-[0.4em] text-gray-500 dark:text-gray-400 mb-2">{highlight.label}</p>
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">{highlight.value}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{highlight.detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {skillBands.map((band, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden rounded-3xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-8 shadow-xl"
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-white/60 to-transparent dark:from-transparent dark:via-white/10 dark:to-transparent" />
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.4em] text-gray-400">{band.badge}</p>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{band.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{band.descriptor}</p>
-                  </div>
-                  <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gray-100 dark:bg-gray-800">
-                    <div className="text-center">
-                      <span className="text-3xl font-black text-gray-900 dark:text-white">{band.percent}</span>
-                      <span className="text-sm font-semibold text-blue-500">%</span>
-                    </div>
-                  </div>
-                </div>
-                <div className={`rounded-2xl bg-gradient-to-br ${band.gradient} text-white p-5 shadow-inner`}>
-                  <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-3">Stack</p>
-                  <div className="flex flex-wrap gap-2">
-                    {band.stack.map((item) => (
-                      <span key={item} className="px-3 py-1 rounded-full bg-white/15 text-sm font-medium">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="rounded-3xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-8 shadow-xl">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Toolbox At A Glance</h3>
-                <span className="text-sm uppercase tracking-[0.4em] text-blue-500">Always Ready</span>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {toolkit.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-4 py-2 rounded-2xl bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 text-sm font-medium text-gray-700 dark:text-gray-100 border border-gray-200 dark:border-gray-800 shadow-sm"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white p-8 shadow-2xl">
-              <h3 className="text-2xl font-semibold mb-6">Workflow Rituals</h3>
-              <div className="space-y-5">
-                {workflowPillars.map((pillar, index) => (
-                  <div key={pillar} className="flex gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/20 font-semibold">
-                      0{index + 1}
-                    </div>
-                    <p className="text-sm leading-relaxed">{pillar}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
+
+      {showScrollTop && (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          className="fixed right-6 bottom-6 z-40 rounded-full border border-[#7B61FF]/40 bg-[#1A1333]/90 p-3 text-white shadow-[0_0_20px_rgba(123,97,255,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(123,97,255,0.8)]"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
     </section>
   );
 };

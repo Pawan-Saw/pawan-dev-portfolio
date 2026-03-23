@@ -59,31 +59,29 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white dark:bg-black dark:text-gray-200">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-[#0C071A] text-gray-200 border-t border-white/10">
+      <div className="container mx-auto px-4 py-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-2">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    Portfolio
-                  </span>
+                <h3 className="font-display text-2xl font-semibold mb-3 bg-clip-text text-transparent" style={{backgroundImage: 'linear-gradient(135deg, #9F7AEA 0%, #7B61FF 35%, #00D4FF 100%)'}}>
+                  Portfolio
                 </h3>
-                <p className="text-gray-300 leading-relaxed max-w-md">
+                <p className="text-sm text-[#A0A0B0] leading-relaxed max-w-md">
                   A passionate Computer Science Engineering graduate with expertise in full-stack development, 
                   creating innovative solutions and beautiful user experiences.
                 </p>
               </div>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all duration-300"
+                    className="w-9 h-9 rounded-full bg-[#1A1333] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#7B61FF] transition-all duration-300 shadow-[0_0_18px_rgba(123,97,255,0.6)]"
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -94,13 +92,13 @@ const Footer: React.FC = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-sm font-semibold mb-3 text-white">Quick Links</h4>
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
                     <button
                       onClick={() => scrollToSection(link.href.replace('#', ''))}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                    className="text-sm text-[#A0A0B0] hover:text-white transition-colors duration-200 text-left"
                     >
                       {link.name}
                     </button>
@@ -111,38 +109,38 @@ const Footer: React.FC = () => {
 
             {/* Contact Info */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+              <h4 className="text-sm font-semibold mb-3 text-white">Contact Info</h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-gray-300">pksaw7717@gmail.com</span>
+                  <span className="text-sm text-[#A0A0B0]">pksaw7717@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="text-gray-300">+91 7717767210</span>
+                  <span className="text-sm text-[#A0A0B0]">+91 7717767210</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#7B61FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-gray-300">Kolkata, India</span>
+                  <span className="text-sm text-[#A0A0B0]">Kolkata, India</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Bottom Section */}
-          <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="border-t border-white/10 mt-10 pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-gray-400 text-sm">
+              <p className="text-xs text-[#A0A0B0]">
                 © {currentYear} Pawan Kumar. All rights reserved.
               </p>
-              <p className="text-gray-400 text-sm mt-4 md:mt-0">
+              <p className="text-xs text-[#A0A0B0] mt-4 md:mt-0">
                 Built with ❤️ using React, TypeScript & Tailwind CSS
               </p>
             </div>
